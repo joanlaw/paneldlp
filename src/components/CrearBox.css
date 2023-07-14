@@ -1,0 +1,110 @@
+.container-crear-box {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container-crear-box > div:first-child {
+    margin-bottom: 20px;
+  }
+  
+  
+  .submenu {
+    margin-top: 20px;
+  }
+  
+  .submenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .submenu li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .submenu button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .grid-container-crear-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .block1,
+  .block2 {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .block1 h2,
+  .block2 h2 {
+    margin-top: 0;
+  }
+  
+  .buscar input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .lista-cartas-crear-box {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+  }
+  
+  .lista-cartas-crear-box div {
+    cursor: pointer;
+  }
+  
+  .lista-cartas-crear-box img {
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+  }
+  
+  .paginacion {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  
+  .paginacion button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .paginacion button.activo {
+    background-color: #555;
+  }
+  
+  .deck-crear-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .deck-crear-box div {
+    width: 20%;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .deck-crear-box img {
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+  }
+  

@@ -1,0 +1,82 @@
+.sidebar {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.submenu-crear-box {
+  list-style: none; /* Añade esto */
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.sidebar-menu-item {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.sidebar-menu-link:hover {
+  color: #ff0000;
+}
+
+.submenu-crear-box {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.submenu-link {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s;
+}
+
+  .submenu-link:hover {
+    color: #ff0000;
+  }
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;  
+}
+
+.sidebar-btn:hover {
+  background-color: #0056b3;
+}
+
+.sidebar-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+.logo-container {
+  display: flex;
+  justify-content: center;  /* Centra horizontalmente el logo en el contenedor */
+  padding: 10px 0;  /* Añade un poco de espacio arriba y abajo del logo */
+}
+
+.logo {
+  max-width: 100%;  /* Asegura que el logo no sobrepase el ancho del sidebar */
+  height: auto;  /* Mantiene la proporción de aspecto de la imagen */
+}
+.sidebar-link {
+  text-decoration: none;
+}

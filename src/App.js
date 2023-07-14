@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Sidebar from './components/Sidebar';
+import CardEditor from './components/CardEditor';
+import CrearDeck from './components/CrearDeck';
+import CrearBox from './components/CrearBox';
+import CrearTorneo from './components/CrearTorneo';
+import ListaBox from './components/ListaBox';
+import DetalleBox from './components/DetalleBox';
+import './components/Sidebar.css'; // Importa el archivo de estilos CSS
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Sidebar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<CardEditor />} />
+            <Route path="/crear-deck" element={<CrearDeck />} />
+            <Route path="/crear-box" element={<CrearBox />} />
+            <Route path="/crear-torneo" element={<CrearTorneo />} />
+            <Route path="/lista-box" element={<ListaBox />} />
+            <Route path="/lista-box/:boxId" element={<DetalleBox />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
