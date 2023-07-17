@@ -242,7 +242,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
         carta.name_english.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-  const cartasPorPagina = 25;
+  const cartasPorPagina = 20;
   const paginaInicio = (page - 1) * cartasPorPagina;
   const paginaFinal = paginaInicio + cartasPorPagina;
   const cartasPaginadas = results.slice(paginaInicio, paginaFinal);

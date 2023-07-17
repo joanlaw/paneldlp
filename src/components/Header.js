@@ -19,7 +19,7 @@ function Header() {
         width={100}
         src="https://res.cloudinary.com/dqofcbeaq/image/upload/v1663790369/iconos%20dlp/ico-d01_kui7ic.png"
       ></Image>
-      <Typography.Title>Aamir's Dashboard</Typography.Title>
+      <Typography.Title>Panel Dlp 1.0</Typography.Title>
       <Space>
         <Badge count={comments.length} dot>
           <MailOutlined
