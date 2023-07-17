@@ -263,108 +263,109 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
   
   return (
     <>
-<div className="container">
-  <h1>Creador de mazos DLP</h1>
-  <div className="deck-builder">
-    <div className="cartas-section">
-      <div className="cartas-container">
-        <h2>Cartas</h2>
-        <div className="buscar">
-          <input
-            type="text"
-            id="buscar"
-            placeholder="Buscar por nombre"
-            onChange={(e) => setSearchTerm(e.target.value)}
-            value={searchTerm}
-          />
-        </div>
+   <div className="container">
+  <header>
+  </header>
 
-        <div className="lista-cartas">
-          {cartasPaginadas.map((carta) => (
+  <div className="deck-builder">
+    <div className="form-section">
+      <h2>Crear Mazo</h2>
+      <form className="deck-form" onSubmit={handleSubmit}>
+      <label htmlFor="jugador">Jugador:</label>
+        <input type="text" name="jugador" value={jugador} onChange={handleChange} />
+
+        <label htmlFor="habilidad">Habilidad:</label>
+        <input type="text" name="habilidad" value={habilidad} onChange={handleChange} />
+
+        <label htmlFor="arquetipo">Arquetipo:</label>
+        <select name="arquetipo" value={arquetipo} onChange={handleChange}>
+          <option value="">Selecciona un arquetipo</option>
+          {arquetipos.map((arquetipo) => (
+            <option key={arquetipo.arquetipo} value={arquetipo.arquetipo}>
+              {arquetipo.arquetipo}
+            </option>
+          ))}
+        </select>
+
+        <label htmlFor="top">Top:</label>
+        <input type="text" name="top" value={top} onChange={handleChange} />
+
+        <label htmlFor="puesto">Puesto:</label>
+        <input type="text" name="puesto" value={puesto} onChange={handleChange} />
+
+        <button type="submit">Crear mazo</button>
+      </form>
+    </div>
+
+    <div className="card-section">
+      <h2>Cartas</h2>
+      <div className="buscar-input">
+      <input
+        type="text"
+        id="buscar"
+        placeholder="Buscar por nombre"
+        onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
+      />
+    </div>
+      <div className="card-list">
+      {cartasPaginadas.map((carta) => (
             <Carta key={carta.id} carta={carta} onClick={() => onClick(carta)} />
           ))}
         </div>
+
+        <div className="paginacion">
+          {currentPage > 1 && (
+            <>
+              <button onClick={() => setCurrentPage(1)}>{"<<"}</button>
+              <button onClick={() => setCurrentPage(currentPage - 1)}>{"<"}</button>
+            </>
+          )}
+
+          {visiblePages.map((num) => (
+            <button
+              key={num}
+              className={num === currentPage ? "activo" : ""}
+              onClick={() => setCurrentPage(num)}
+            >
+              {num}
+            </button>
+          ))}
       </div>
-      <div className="paginacion">
-  {currentPage > 1 && (
-    <>
-      <button onClick={() => setCurrentPage(1)}>{"<<"}</button>
-      <button onClick={() => setCurrentPage(currentPage - 1)}>{"<"}</button>
-    </>
-  )}
-
-  {visiblePages.map((num) => (
-    <button
-      key={num}
-      className={num === currentPage ? "activo" : ""}
-      onClick={() => setCurrentPage(num)}
-    >
-      {num}
-    </button>
-  ))}
-
-  {currentPage < totalPages && (
-    <>
-      <button onClick={() => setCurrentPage(currentPage + 1)}>{">"}</button>
-      <button onClick={() => setCurrentPage(totalPages)}>{">>"}</button>
-    </>
-  )}
-</div>
-
-
     </div>
 
     <div className="deck-section">
-      <div className="deck-container">
-        <h2>Deck</h2>
-        <div className="deck">
-          {deck.map((carta, index) => (
+      <h2>Deck</h2>
+      <div className="deck">
+      {deck.map((carta, index) => (
             <div key={index} className="deck-card" onClick={() => handleQuitarCarta(index)}>
               <img src={carta.image.secure_url} alt={carta.nombre} />
             </div>
           ))}
-        </div>
+      </div>
+    </div>
 
-        <h2>Extra Deck</h2>
-        <div className="deck">
-          {deckextra.map((carta, index) => (
+    <div className="extra-deck-section">
+      <h2>Extra Deck</h2>
+      <div className="extra-deck">
+      {deckextra.map((carta, index) => (
             <div key={index} className="deck-card" onClick={() => handleQuitarCartaExtra(index)}>
               <img src={carta.image.secure_url} alt={carta.nombre} />
             </div>
           ))}
-        </div>
+      </div>
+
+    </div>
+    <div class="side-deck-section">
+      <h2>Side Deck</h2>
+      <div class="side-deck">
+       
       </div>
     </div>
   </div>
-
-  <div className="deck-form-container">
-    <form className="deck-form" onSubmit={handleSubmit}>
-      <label htmlFor="jugador">Jugador:</label>
-      <input type="text" name="jugador" value={jugador} onChange={handleChange} />
-
-      <label htmlFor="habilidad">Habilidad:</label>
-      <input type="text" name="habilidad" value={habilidad} onChange={handleChange} />
-
-      <label htmlFor="arquetipo">Arquetipo:</label>
-      <select name="arquetipo" value={arquetipo} onChange={handleChange}>
-        <option value="">Selecciona un arquetipo</option>
-        {arquetipos.map((arquetipo) => (
-          <option key={arquetipo.arquetipo} value={arquetipo.image_url}>
-            {arquetipo.arquetipo}
-          </option>
-        ))}
-      </select>
-
-      <label htmlFor="top">Top:</label>
-      <input type="text" name="top" value={top} onChange={handleChange} />
-
-      <label htmlFor="puesto">Puesto:</label>
-      <input type="text" name="puesto" value={puesto} onChange={handleChange} />
-
-      <button type="submit">Crear mazo</button>
-    </form>
-  </div>
 </div>
+
+
     </>
   );
 };

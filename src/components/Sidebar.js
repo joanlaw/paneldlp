@@ -5,9 +5,7 @@ import './Sidebar.css'; // Importa el archivo de estilos CSS
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="logo-container">
-        <img src="https://res.cloudinary.com/dqofcbeaq/image/upload/v1663790369/iconos%20dlp/ico-d01_kui7ic.png" alt="Logo" className="logo" />
-      </div>
+
       <ul className="sidebar-menu">
         <li className="sidebar-menu-item">
           <Link to="/crear-deck" className="sidebar-menu-link">Crear Deck</Link>

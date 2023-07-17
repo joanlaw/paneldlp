@@ -1,210 +1,176 @@
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .deck-builder {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .cartas-container {
-    width: 60%;
-  }
-  
-  .lista-cartas {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-  }
-  
-  .deck-container {
-    width: 35%;
-  }
-  
-  .deck {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .deck-card {
-    cursor: pointer;
-    max-width: 100px;
-    height: 145px;
-  }
-  
-  .deck-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .deck-form {
-    margin-top: 20px;
-  }
-  
-  .deck-form label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .deck-form input {
-    width: 100%;
-    padding: 5px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .deck-form button {
-    display: block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .paginacion {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .paginacion button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .paginacion button.activo {
-    background-color: #4CAF50;
-    color: #fff;
-  }
-  
-
- /**/
-
- .paginacion {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
+/* Estilos generales */
+* {
+  box-sizing: border-box;
 }
 
-.paginacion button {
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.deck-builder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.form-section,
+.card-section,
+.deck-section,
+.extra-deck-section,
+.side-deck-section {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-section h2,
+.card-section h2,
+.deck-section h2,
+.extra-deck-section h2,
+.side-deck-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.deck-form {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 2rem;
-  height: 2rem;
-  margin: 0 0.5rem;
+  flex-direction: column;
+}
+
+.deck-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.deck-form input,
+.deck-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.deck-form button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: #fff;
   border: none;
-  background-color: #fff;
+  border-radius: 3px;
   cursor: pointer;
 }
 
-.paginacion button.activo {
-  background-color: #ccc;
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px; /* Ajusta el valor según sea necesario */
 }
 
-.paginacion button:hover {
-  background-color: #f0f0f0;
-}
-
-.paginacion button:first-child {
-  margin-left: 0;
-}
-
-.paginacion button:last-child {
-  margin-right: 0;
-}
-
-.buscar-input {
+.card-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.card-name {
+  font-size: 14px;
+  text-align: center;
+}
+
+.deck,
+.extra-deck,
+.side-deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.deck-card,
+.extra-deck-card,
+.side-deck-card {
+  flex: 0 0 calc(20% - 10px);
+  cursor: pointer;
+}
+
+.deck-card img,
+.extra-deck-card img,
+.side-deck-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.deck-card .remove-card,
+.extra-deck-card .remove-card,
+.side-deck-card .remove-card {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.extra-deck-card .remove-card,
+.side-deck-card .remove-card {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+/* Estilos para el input de búsqueda */
+.buscar-input {
+  margin-bottom: 10px;
 }
 
 .buscar-input input {
-  padding: 0.5rem;
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-left: 0.5rem;
+  font-size: 14px;
 }
 
 .buscar-input input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.deck-builder {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.cartas-section, .deck-section {
-  flex-basis: 45%;
-}
-
-.cartas-container, .deck-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.buscar, .lista-cartas {
-  margin-top: 20px;
-}
-
-.deck-form-container {
-  margin-top: 40px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.deck-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.deck {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Esto crea una grilla con 5 columnas */
-  gap: 10px; /* Espacio entre las cartas */
-  margin-top: 20px;
-  background-color: #040d16;
-}
-
-.deck-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Cambiar de 'cover' a 'contain' */
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
 }
