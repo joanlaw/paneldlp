@@ -1,0 +1,61 @@
+
+/*
+.card-form {
+    width: 80%; 
+    height: 80vh; 
+    max-height: 80vh; 
+    overflow-y: auto; 
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  
+ 
+  .card-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .card-form form {
+    width: 100%;
+  }
+  
+  .card-form form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .card-form label {
+    margin-bottom: 5px;
+  }
+  
+  .card-form input,
+  .card-form select,
+  .card-form textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .card-form button {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  .card-form button[type="submit"] {
+    background: #007BFF;
+  }
+  
+  .card-form button[type="button"] {
+    background: #6c757d;
+    margin-left: 10px;
+  }
+  
+
+ */ 

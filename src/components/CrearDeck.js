@@ -4,6 +4,8 @@ import axios from "axios";
 //import Header from "../../components/Header";
 //import Footer from "../../components/Footer";
 import "./CrearDeck.css"; // Importa el archivo CSS
+import arquetiposData from "../data/arquetipos.json";
+
 
 const CrearDeck = () => {
   const [cartas, setCartas] = useState([]);
@@ -17,21 +19,64 @@ const CrearDeck = () => {
   const [arquetipo, setArquetipo] = useState("");
   const [top, setTop] = useState("");
   const [puesto, setPuesto] = useState("");
-  const [search, setSearch] = useState("");
+   const [search, setSearch] = useState("");
+  const [arquetipos, setArquetipos] = useState([]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [visiblePages, setVisiblePages] = useState([]);
+const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
+
+
+  const cardsPerPage = 50; 
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`https://back-render-cloud-dlp.onrender.com/cards?page=${page}&limit=10`)
-      .then((response) => {
-        setCartas(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [page]);
+    setArquetipos(arquetiposData.arquetipos);
+  }, []);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        let response;
+        if (searchTerm) {
+          response = await axios.get('https://api.duellinks.pro/cards/', {
+            params: {
+              search: searchTerm,
+              page: currentPage - 1,
+              size: cardsPerPage
+            }
+          });
+        } else {
+          response = await axios.get('https://api.duellinks.pro/cards/', {
+            params: {
+              page: currentPage - 1,
+              size: cardsPerPage
+            }
+          });
+        }
+  
+        setCartas(response.data.docs);
+        setCurrentPage(response.data.page + 1);
+        setTotalPages(response.data.totalPages);
+  
+        // Actualizar las páginas visibles
+        let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
+        let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
+        if (endPage - startPage < maxVisiblePages - 1) {
+          startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+        }
+        setVisiblePages(Array.from({length: endPage - startPage + 1}, (_, i) => startPage + i));
+      } catch (error) {
+        console.log('Error al obtener las cartas:', error);
+      }
+    };
+  
+    fetchCards();
+  }, [searchTerm, currentPage, cardsPerPage, maxVisiblePages, totalPages]);
+  
+  
 
   const handleAgregarCarta = (carta) => {
     if (deck.length < 30) {
@@ -54,7 +99,14 @@ const CrearDeck = () => {
       carta.tipo_de_carta === "Xyz" ||
       carta.tipo_de_carta === "Sincronía / Cantante" ||
       carta.tipo_de_carta === "Xyz / Péndulo" ||
-      carta.tipo_de_carta === "Link"
+      carta.tipo_de_carta === "Link"  ||
+      carta.tipo_de_carta === "Link Monster" ||
+      carta.tipo_de_carta === "Fusion Monster" ||
+      carta.tipo_de_carta === "XYZ Monster" ||
+      carta.tipo_de_carta === "XYZ Péndulo Monster" ||
+      carta.tipo_de_carta === "XYZ Pendulum Effect Monster" ||
+      carta.tipo_de_carta === "Synchro Monster" ||
+      carta.tipo_de_carta === "Synchro Tuner Monster"
     ) {
       handleAgregarCartaDeckExtra(carta);
     } else {
@@ -121,20 +173,32 @@ const CrearDeck = () => {
       if (acc[carta._id]) {
         acc[carta._id].quantity += 1;
       } else {
-        acc[carta._id] = { cardId: carta._id, quantity: 1 };
+        acc[carta._id] = {
+          cardId: carta._id,
+          quantity: 1,
+          _id: carta._id,
+          nombre: carta.nombre,
+          name_english: carta.name_english
+        };
       }
       return acc;
     }, {});
-
+  
     const extraDeckObject = deckextra.reduce((acc, carta) => {
       if (acc[carta._id]) {
         acc[carta._id].quantity += 1;
       } else {
-        acc[carta._id] = { cardId: carta._id, quantity: 1 };
+        acc[carta._id] = {
+          cardId: carta._id,
+          quantity: 1,
+          _id: carta._id,
+          nombre: carta.nombre,
+          name_english: carta.name_english
+        };
       }
       return acc;
     }, {});
-
+  
     const mainDeck = Object.values(mainDeckObject);
     const extraDeck = Object.values(extraDeckObject);
 
@@ -170,13 +234,13 @@ const CrearDeck = () => {
     return <p>Hubo un error al cargar las cartas</p>;
   }
 
-  const results = !search
-    ? cartas
-    : cartas.filter(
-        (carta) =>
-          carta.nombre.toLowerCase().includes(search.toLowerCase()) ||
-          carta.name_english.toLowerCase().includes(search.toLowerCase())
-      );
+  const results = !searchTerm
+  ? cartas
+  : cartas.filter(
+      (carta) =>
+        carta.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        carta.name_english.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   const cartasPorPagina = 25;
   const paginaInicio = (page - 1) * cartasPorPagina;
@@ -184,7 +248,8 @@ const CrearDeck = () => {
   const cartasPaginadas = results.slice(paginaInicio, paginaFinal);
 
   const numeroPaginas = Math.ceil(results.length / cartasPorPagina);
-  const paginas = Array.from({ length: numeroPaginas }, (_, index) => index + 1);
+  const paginas = Array.from({length: numeroPaginas}, (_, i) => i + 1);
+
 
   const Carta = ({ carta, onClick }) => (
     <div onClick={onClick}>
@@ -192,131 +257,114 @@ const CrearDeck = () => {
     </div>
   );
 
-  const maxPaginas = 5; // Limita a 5 páginas visibles en la paginación
+  //const maxPaginas = 5; // Limita a 5 páginas visibles en la paginación
 
 
   
   return (
     <>
-            <div className="container">
-        <h1>Creador de mazos DLP</h1>
-        <div className="deck-builder">
-          <div className="cartas-container">
-            <h2>Cartas</h2>
-            <div className="buscar">
-  <div className="buscar-input">
-    <label htmlFor="buscar">Buscar por nombre:</label>
-    <input
-      type="text"
-      id="buscar"
-      placeholder="Buscar por nombre"
-      onChange={(e) => setSearch(e.target.value)}
-      value={search}
-    />
+<div className="container">
+  <h1>Creador de mazos DLP</h1>
+  <div className="deck-builder">
+    <div className="cartas-section">
+      <div className="cartas-container">
+        <h2>Cartas</h2>
+        <div className="buscar">
+          <input
+            type="text"
+            id="buscar"
+            placeholder="Buscar por nombre"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+          />
+        </div>
+
+        <div className="lista-cartas">
+          {cartasPaginadas.map((carta) => (
+            <Carta key={carta.id} carta={carta} onClick={() => onClick(carta)} />
+          ))}
+        </div>
+      </div>
+      <div className="paginacion">
+  {currentPage > 1 && (
+    <>
+      <button onClick={() => setCurrentPage(1)}>{"<<"}</button>
+      <button onClick={() => setCurrentPage(currentPage - 1)}>{"<"}</button>
+    </>
+  )}
+
+  {visiblePages.map((num) => (
+    <button
+      key={num}
+      className={num === currentPage ? "activo" : ""}
+      onClick={() => setCurrentPage(num)}
+    >
+      {num}
+    </button>
+  ))}
+
+  {currentPage < totalPages && (
+    <>
+      <button onClick={() => setCurrentPage(currentPage + 1)}>{">"}</button>
+      <button onClick={() => setCurrentPage(totalPages)}>{">>"}</button>
+    </>
+  )}
+</div>
+
+
+    </div>
+
+    <div className="deck-section">
+      <div className="deck-container">
+        <h2>Deck</h2>
+        <div className="deck">
+          {deck.map((carta, index) => (
+            <div key={index} className="deck-card" onClick={() => handleQuitarCarta(index)}>
+              <img src={carta.image.secure_url} alt={carta.nombre} />
+            </div>
+          ))}
+        </div>
+
+        <h2>Extra Deck</h2>
+        <div className="deck">
+          {deckextra.map((carta, index) => (
+            <div key={index} className="deck-card" onClick={() => handleQuitarCartaExtra(index)}>
+              <img src={carta.image.secure_url} alt={carta.nombre} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="deck-form-container">
+    <form className="deck-form" onSubmit={handleSubmit}>
+      <label htmlFor="jugador">Jugador:</label>
+      <input type="text" name="jugador" value={jugador} onChange={handleChange} />
+
+      <label htmlFor="habilidad">Habilidad:</label>
+      <input type="text" name="habilidad" value={habilidad} onChange={handleChange} />
+
+      <label htmlFor="arquetipo">Arquetipo:</label>
+      <select name="arquetipo" value={arquetipo} onChange={handleChange}>
+        <option value="">Selecciona un arquetipo</option>
+        {arquetipos.map((arquetipo) => (
+          <option key={arquetipo.arquetipo} value={arquetipo.image_url}>
+            {arquetipo.arquetipo}
+          </option>
+        ))}
+      </select>
+
+      <label htmlFor="top">Top:</label>
+      <input type="text" name="top" value={top} onChange={handleChange} />
+
+      <label htmlFor="puesto">Puesto:</label>
+      <input type="text" name="puesto" value={puesto} onChange={handleChange} />
+
+      <button type="submit">Crear mazo</button>
+    </form>
   </div>
 </div>
-
-            <div className="lista-cartas">
-              {cartasPaginadas.map((carta) => (
-                <Carta key={carta.id} carta={carta} onClick={() => onClick(carta)} />
-              ))}
-            </div>
-            <div className="paginacion">
-  {page > 1 && (
-    <>
-      <button onClick={() => setPage(1)}>{"<<"}</button>
-      <button onClick={() => setPage(page - 1)}>{"<"}</button>
-    </>
-  )}
-
-  {paginas
-    .slice(Math.max(0, page - maxPaginas), page + maxPaginas)
-    .map((num) => (
-      <button
-        key={num}
-        className={num === page ? "activo" : ""}
-        onClick={() => setPage(num)}
-      >
-        {num}
-      </button>
-    ))}
-
-  {page < numeroPaginas && (
-    <>
-      <button onClick={() => setPage(page + 1)}>{">"}</button>
-      <button onClick={() => setPage(numeroPaginas)}>{">>"}</button>
-    </>
-  )}
-</div>
-
-
-          </div>
-
-          <div className="deck-container">
-            <h2>Deck</h2>
-            <div className="deck">
-              {deck.map((carta, index) => (
-                <div key={index} className="deck-card" onClick={() => handleQuitarCarta(index)}>
-                  <img src={carta.image.secure_url} alt={carta.nombre} />
-                </div>
-              ))}
-            </div>
-
-            <h2>Extra Deck</h2>
-            <div className="deck">
-              {deckextra.map((carta, index) => (
-                <div key={index} className="deck-card" onClick={() => handleQuitarCartaExtra(index)}>
-                  <img src={carta.image.secure_url} alt={carta.nombre} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        <form className="deck-form" onSubmit={handleSubmit}>
-          <label htmlFor="jugador">Jugador:</label>
-          <input
-            type="text"
-            name="jugador"
-            value={jugador}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="habilidad">Habilidad:</label>
-          <input
-            type="text"
-            name="habilidad"
-            value={habilidad}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="arquetipo">Arquetipo:</label>
-          <input
-            type="text"
-            name="arquetipo"
-            value={arquetipo}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="top">Top:</label>
-          <input
-            type="text"
-            name="top"
-            value={top}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="puesto">Puesto:</label>
-          <input
-            type="text"
-            name="puesto"
-            value={puesto}
-            onChange={handleChange}
-          />
-
-          <button type="submit">Crear mazo</button>
-        </form>
-      </div>
     </>
   );
 };

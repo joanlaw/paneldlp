@@ -1,0 +1,253 @@
+{
+    "arquetipos": [
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/89631139.jpg",
+        "arquetipo": "Blue-Eyes"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/46986421.jpg",
+        "arquetipo": "Dark Magician"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/74677427.jpg",
+        "arquetipo": "Red-Eyes"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/89943724.jpg",
+        "arquetipo": "Elemental HERO"
+      },
+      {
+        "image_url": "https://example.com/blackwing_full_armor_master.jpg",
+        "arquetipo": "Blackwing"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/70095154.jpg",
+        "arquetipo": "Cyber Dragon"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/95735217.jpg",
+        "arquetipo": "Ancient Gear"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/57774843.jpg",
+        "arquetipo": "Judgment"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/87871125.jpg",
+        "arquetipo": "Salamangreat"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/63288573.jpg",
+        "arquetipo": "Sky Striker"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/52068432.jpg",
+        "arquetipo": "Nekroz"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/50588353.jpg",
+        "arquetipo": "Crystron"
+      },
+      {
+        "image_url": "https://example.com/vendread_savior.jpg",
+        "arquetipo": "Vendread"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/41175645.jpg",
+        "arquetipo": "Silent Magician"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/15180041.jpg",
+        "arquetipo": "Silent Swordsman"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/31764700.jpg",
+        "arquetipo": "Yubel"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/37129797.jpg",
+        "arquetipo": "Vampire"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/29981921.jpg",
+        "arquetipo": "Legendary Six Samurai"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/58481572.jpg",
+        "arquetipo": "Masked HERO"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/94259633.jpg",
+        "arquetipo": "Relinquished"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/72989439.jpg",
+        "arquetipo": "Black Luster Soldier"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/38517737.jpg",
+        "arquetipo": "Blue-Eyes"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/86240887.jpg",
+        "arquetipo": "Buster Blader"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/77235086.jpg",
+        "arquetipo": "Cyber Angel"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/9024198.jpg",
+        "arquetipo": "D/D/D"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/23015896.jpg",
+        "arquetipo": "Fire King"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/6148016.jpg",
+        "arquetipo": "Geargia"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/53334641.jpg",
+        "arquetipo": "Ghostrick"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/90238142.jpg",
+        "arquetipo": "Harpie"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/68184115.jpg",
+        "arquetipo": "Inzektor"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/23874409.jpg",
+        "arquetipo": "Karakuri"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/37164373.jpg",
+        "arquetipo": "Madolche"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/38033121.jpg",
+        "arquetipo": "Dark Magician"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/92125819.jpg",
+        "arquetipo": "Noble Knight"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/37649320.jpg",
+        "arquetipo": "Paleozoic"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/93717133.jpg",
+        "arquetipo": "Galaxy-Eyes"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/48063985.jpg",
+        "arquetipo": "Ritual Beast"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/16428514.jpg",
+        "arquetipo": "Subterror"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/494922.jpg",
+        "arquetipo": "Superheavy Samurai"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/68406755.jpg",
+        "arquetipo": "Triamid"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/21200905.jpg",
+        "arquetipo": "Aromaseraphy"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/44586426.jpg",
+        "arquetipo": "Batteryman"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/7093411.jpg",
+        "arquetipo": "Crystal Beast"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/66023650.jpg",
+        "arquetipo": "Fur Hire"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/66729231.jpg",
+        "arquetipo": "Gishki"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/79206925.jpg",
+        "arquetipo": "Gravekeeper's"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/77901552.jpg",
+        "arquetipo": "Hieratic"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/94689206.jpg",
+        "arquetipo": "Block"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/22110647.jpg",
+        "arquetipo": "Mecha Phantom Beast"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/45960523.jpg",
+        "arquetipo": "Metaphys"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/15286412.jpg",
+        "arquetipo": "Nordic"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/34031284.jpg",
+        "arquetipo": "Ojama"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/70369116.jpg",
+        "arquetipo": "Predaplant"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/70902743.jpg",
+        "arquetipo": "Red Dragon Archfiend"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/56910167.jpg",
+        "arquetipo": "Superdreadnought Rail Cannon"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/33909817.jpg",
+        "arquetipo": "Sylvan"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/16146511.jpg",
+        "arquetipo": "Evocator"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/402568.jpg",
+        "arquetipo": "Watt"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/77334267.jpg",
+        "arquetipo": "Wind-Up"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/84013238.jpg",
+        "arquetipo": "Utopia"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/41375811.jpg",
+        "arquetipo": "Zoodiac"
+      },
+      {
+        "image_url": "https://images.ygoprodeck.com/images/cards_cropped/63362460.jpg",
+        "arquetipo": "Destiny Hero"
+      }
+    ]
+  }
+  

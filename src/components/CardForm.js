@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CardForm.css';
 
 const CardForm = ({ card, onSubmit, onCancel }) => {
   const [updatedCard, setUpdatedCard] = useState(card);
@@ -210,42 +211,6 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
           <textarea
             name="efecto_pendulo"
             value={updatedCard.efecto_pendulo}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Caja:</label>
-          <input
-            type="text"
-            name="caja"
-            value={updatedCard.caja}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Estructura:</label>
-          <input
-            type="text"
-            name="estructura"
-            value={updatedCard.estructura}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Selection Box:</label>
-          <input
-            type="text"
-            name="selection_box"
-            value={updatedCard.selection_box}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Lote:</label>
-          <input
-            type="text"
-            name="lote"
-            value={updatedCard.lote}
             onChange={handleChange}
           />
         </div>

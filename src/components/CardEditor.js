@@ -9,31 +9,28 @@ const CardEditor = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(50);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get('https://back-render-cloud-dlp.onrender.com/cards/');
-        setCards(response.data);
+        const response = await axios.get('https://api.duellinks.pro/cards/', {
+          params: {
+            search: searchTerm,
+            page: currentPage - 1,
+            size: cardsPerPage
+          }
+        });
+        setCards(response.data.docs);
+        setCurrentPage(response.data.page);
+        setTotalPages(response.data.totalPages);
       } catch (error) {
         console.log('Error al obtener las cartas:', error);
       }
     };
-
+  
     fetchCards();
-  }, []);
-
-  const filteredCards = cards.filter((card) => {
-    const nameMatch = card.nombre.toLowerCase().includes(searchTerm.toLowerCase());
-    const englishNameMatch = card.name_english.toLowerCase().includes(searchTerm.toLowerCase());
-    return nameMatch || englishNameMatch;
-  });
-
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = filteredCards.slice(indexOfFirstCard, indexOfLastCard);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  }, [searchTerm, currentPage]); // Agrega searchTerm aquí también para que cuando cambie se haga la petición al servidor con el nuevo término
 
   const handleSelectCard = (card) => {
     setSelectedCard(card);
@@ -64,7 +61,7 @@ const CardEditor = () => {
   };
 
   const renderCards = () => {
-    return currentCards.map((card) => (
+    return cards.map((card) => (
       <div
         key={card._id}
         className="card-item"
@@ -77,8 +74,9 @@ const CardEditor = () => {
     ));
   };
 
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const renderPagination = () => {
-    const pageCount = Math.ceil(filteredCards.length / cardsPerPage);
     const maxDisplayedPages = 7;
     const pageNumbers = [];
 
@@ -90,9 +88,9 @@ const CardEditor = () => {
       startPage = 1;
     }
 
-    if (endPage > pageCount) {
-      startPage -= endPage - pageCount;
-      endPage = pageCount;
+    if (endPage > totalPages) {
+      startPage -= endPage - totalPages;
+      endPage = totalPages;
     }
 
     for (let i = startPage; i <= endPage; i++) {
@@ -120,12 +118,12 @@ const CardEditor = () => {
             {number}
           </button>
         ))}
-        {currentPage < pageCount && (
+        {currentPage < totalPages && (
           <>
             <button className="pagination-btn" onClick={() => paginate(currentPage + 1)}>
               &gt;
             </button>
-            <button className="pagination-btn" onClick={() => paginate(pageCount)}>
+            <button className="pagination-btn" onClick={() => paginate(totalPages)}>
               &gt;&gt;
             </button>
           </>
