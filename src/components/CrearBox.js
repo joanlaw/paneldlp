@@ -11,26 +11,50 @@ const CrearBox = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [nombre, setNombre] = useState("");
   const [tipoDeBox, setTipoDeBox] = useState("");
   const [fechaDeLanzamiento, setFechaDeLanzamiento] = useState("");
   const [bannerLink, setBannerLink] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  const handleSearchTermChange = (event) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+  };
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`https://back-render-cloud-dlp.onrender.com/cards?page=${page}&limit=10`)
-      .then((response) => {
-        setCartas(response.data);
+    let timerId;
+
+    const fetchCards = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `https://back-render-cloud-dlp.onrender.com/cards?page=${page}&size=10&search=${searchTerm}`
+        );
+        setCartas(response.data.docs);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         setError(error);
         setLoading(false);
-      });
-  }, [page]);
+      }
+    };
+
+    if (initialLoad) {
+      fetchCards();
+      setInitialLoad(false);
+    } else if (searchTerm) {
+      clearTimeout(timerId);
+      timerId = setTimeout(fetchCards, 500);
+    } else {
+      fetchCards();
+    }
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [page, searchTerm, initialLoad]);
 
   const handleCartaSeleccionada = (carta) => {
     if (!selectedCategory) return;
@@ -142,7 +166,7 @@ const CrearBox = () => {
     handleReset();
   };
 
-  if (loading) {
+  if (initialLoad && loading) {
     return <p>Cargando cartas...</p>;
   }
 
@@ -150,12 +174,12 @@ const CrearBox = () => {
     return <p>Hubo un error al cargar las cartas</p>;
   }
 
-  const results = !search
+  const results = !searchTerm
     ? cartas
     : cartas.filter(
         (carta) =>
-          carta.nombre.toLowerCase().includes(search.toLowerCase()) ||
-          carta.name_english.toLowerCase().includes(search.toLowerCase())
+          carta.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          carta.name_english.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
   const cartasPorPagina = 25;
@@ -245,8 +269,8 @@ const CrearBox = () => {
                 type="text"
                 id="buscar"
                 placeholder="Buscar por nombre"
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
+                onChange={handleSearchTermChange}
+                value={searchTerm}
               />
             </div>
 

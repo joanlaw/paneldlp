@@ -138,8 +138,7 @@ const CardEditor = () => {
 
   return (
     <div className="card-editor-container">
-      <h1>Dlp creator 1.0</h1>
-      <div className="search-bar">
+      <div className="buscar-input">
         <input
           type="text"
           placeholder="Buscar carta..."

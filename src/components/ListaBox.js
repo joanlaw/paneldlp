@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './ListaBox.css';
 
 const ListaBox = () => {
   const [boxes, setBoxes] = useState([]);
@@ -10,7 +11,7 @@ const ListaBox = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('https://back-render-cloud-dlp.onrender.com/boxes')
+      .get('https://api.duellinks.pro/boxes')
       .then((response) => {
         setBoxes(response.data);
         setLoading(false);
@@ -30,15 +31,21 @@ const ListaBox = () => {
   }
 
   return (
-    <div>
+    <div className="lista-box-container">
       <h2>Lista de Cajas</h2>
-      <ul>
+      <div className="box-flex-container">
         {boxes.map((box) => (
-          <li key={box._id}>
-            <Link to={`/lista-box/${box._id}`}>{box.nombre}</Link>
-          </li>
+          <div className="box-item" key={box._id}>
+            <Link to={`/lista-box/${box._id}`}>
+              <img src={box.banner} alt={box.nombre} />
+            </Link>
+            <p>{box.nombre}</p>
+          </div>
         ))}
-      </ul>
+      </div>
+      <Link to="/crear-box" className="crear-box-button">
+        Crear Box
+      </Link>
     </div>
   );
 };

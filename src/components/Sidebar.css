@@ -1,18 +1,18 @@
+/* Estilos del sidebar */
 .sidebar {
   width: 200px;
   background-color: #f0f0f0;
   padding: 20px;
+  height: 100vh; /* Ajusta la altura del sidebar al 100% del viewport */
+  display: flex; /* Utiliza flexbox para alinear los elementos verticalmente */
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: space-between; /* Añade espacio entre los elementos */
 }
 
 .sidebar-menu {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-.submenu-crear-box {
-  list-style: none; /* Añade esto */
-  margin-top: 10px;
-  padding-left: 20px;
 }
 
 .sidebar-menu-item {
@@ -41,14 +41,15 @@
   transition: color 0.3s;
 }
 
-  .submenu-link:hover {
-    color: #ff0000;
-  }
+.submenu-link:hover {
+  color: #ff0000;
+}
 
 .sidebar-btn {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
-  margin-top: 1rem;
+  margin: 0.5rem 0;
   padding: 0.5rem;
   background-color: #007bff;
   color: #fff;
@@ -56,8 +57,9 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  text-decoration: none;  
+  text-decoration: none;
 }
+
 
 .sidebar-btn:hover {
   background-color: #0056b3;
@@ -67,16 +69,19 @@
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
+
 .logo-container {
   display: flex;
-  justify-content: center;  /* Centra horizontalmente el logo en el contenedor */
-  padding: 10px 0;  /* Añade un poco de espacio arriba y abajo del logo */
+  justify-content: center;
+  align-items: center; /* Centra verticalmente el logo en el contenedor */
+  padding: 10px 0;
 }
 
 .logo {
-  max-width: 100%;  /* Asegura que el logo no sobrepase el ancho del sidebar */
-  height: auto;  /* Mantiene la proporción de aspecto de la imagen */
+  max-width: 100%;
+  height: auto;
 }
+
 .sidebar-link {
   text-decoration: none;
 }
