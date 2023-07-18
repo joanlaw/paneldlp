@@ -29,6 +29,12 @@ const Sidebar = () => {
           Crear Torneo
         </Link>
       </Menu.Item>
+      <Menu.Item key="/crear-video" className="sidebar-menu-item">
+        <Link to="/crear-video" className="sidebar-menu-link">
+          Videos YT
+        </Link>
+      </Menu.Item>
+
       <Menu.Item key="/" className="sidebar-link">
         <Link to="/" className="sidebar-link">
           <button className="sidebar-btn">

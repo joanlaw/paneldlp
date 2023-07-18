@@ -76,7 +76,7 @@ const DetalleBox = () => {
 
   const handleUpdateCard = async (updatedCard) => {
     try {
-      await axios.put(`https://back-render-cloud-dlp.onrender.com/cards/${updatedCard._id}`, updatedCard);
+      await axios.put(`https://api.duellinks.pro/cards/${updatedCard._id}`, updatedCard);
 
       if (selectedCard) {
         switch (selectedCard.rareza) {
