@@ -13,6 +13,7 @@ import VideoYt from './components/VideoYt';
 import Torneos from './components/Torneos';
 import './components/Header.css'; // Importa el archivo de estilos CSS
 import Footer from './components/Footer';
+import Blog from './components/Blog';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/lista-box" element={<ListaBox />} />
           <Route path="/lista-box/:boxId" element={<DetalleBox />} />
           <Route path="/crear-video" element={<VideoYt />} />
+          <Route path="/crear-entrada" element={<Blog />} />
         </Routes>
       </div>
     </div>

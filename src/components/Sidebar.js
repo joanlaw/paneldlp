@@ -35,6 +35,12 @@ const Sidebar = () => {
         </Link>
       </Menu.Item>
 
+      <Menu.Item key="/crear-entrada" className="sidebar-menu-item">
+        <Link to="/crear-entrada" className="sidebar-menu-link">
+          Crear entrada
+        </Link>
+      </Menu.Item>
+
       <Menu.Item key="/" className="sidebar-link">
         <Link to="/" className="sidebar-link">
           <button className="sidebar-btn">
