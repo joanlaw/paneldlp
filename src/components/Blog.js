@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Blog.css";
 
 function Blog() {
   const [formData, setFormData] = useState({
@@ -38,30 +39,30 @@ function Blog() {
   };
 
   return (
-    <div>
-      <h2>Crear nueva entrada de blog</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="blog-form-container">
+      <h2 className="blog-form-title">Crear nueva entrada de blog</h2>
+      <form className="blog-form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <label>Título:</label>
-          <input type="text" name="titulo" value={formData.titulo} onChange={handleChange} />
+          <input className="form-control" type="text" name="titulo" value={formData.titulo} onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Cuerpo del blog:</label>
-          <textarea name="cuerpo_blog" value={formData.cuerpo_blog} onChange={handleChange} />
+          <textarea className="form-control" name="cuerpo_blog" value={formData.cuerpo_blog} onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Fecha:</label>
-          <input type="date" name="fecha" value={formData.fecha} onChange={handleChange} />
+          <input className="form-control" type="date" name="fecha" value={formData.fecha} onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Imagen destacada:</label>
-          <input type="text" name="imagen_destacada" value={formData.imagen_destacada} onChange={handleChange} />
+          <input className="form-control" type="text" name="imagen_destacada" value={formData.imagen_destacada} onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Categoría:</label>
-          <input type="text" name="categoria" value={formData.categoria} onChange={handleChange} />
+          <input className="form-control" type="text" name="categoria" value={formData.categoria} onChange={handleChange} />
         </div>
-        <button type="submit">Guardar</button>
+        <button className="btn btn-primary" type="submit">Guardar</button>
       </form>
     </div>
   );

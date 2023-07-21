@@ -31,7 +31,7 @@ const CrearBox = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://back-render-cloud-dlp.onrender.com/cards?page=${page}&size=10&search=${searchTerm}`
+          `https://api.duellinks.pro/cards?page=${page}&size=10&search=${searchTerm}`
         );
         setCartas(response.data.docs);
         setLoading(false);

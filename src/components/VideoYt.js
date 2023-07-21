@@ -10,6 +10,7 @@ function VideoYt() {
   const [deck3, setDeck3] = useState('');
   const [deck4, setDeck4] = useState('');
   const [deck5, setDeck5] = useState('');
+  const [bannerVideo, setBannerVideo] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ function VideoYt() {
       deckv3: deck3,
       deckv4: deck4,
       deckv5: deck5,
+      banner_video: bannerVideo, // Agregamos el campo "banner_video" al objeto de datos
     };
 
     try {
@@ -119,6 +121,15 @@ function VideoYt() {
             className="form-input"
             value={deck5}
             onChange={(e) => setDeck5(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Banner del Video:</label>
+          <input
+            type="text"
+            className="form-input"
+            value={bannerVideo}
+            onChange={(e) => setBannerVideo(e.target.value)}
           />
         </div>
         <button type="submit" className="submit-button">Crear Video</button>
