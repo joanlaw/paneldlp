@@ -14,7 +14,7 @@ const CardEditor = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get('https://api.duellinks.pro/cards/', {
+        const response = await axios.get('https://backend-dlp-neuronube.koyeb.app/cards/', {
           params: {
             search: searchTerm,
             page: currentPage - 1,
@@ -45,7 +45,7 @@ const CardEditor = () => {
   const handleUpdateCard = (updatedCard) => {
     const updateCard = async () => {
       try {
-        await axios.put(`https://back-render-cloud-dlp.onrender.com/cards/${updatedCard._id}`, updatedCard);
+        await axios.put(`https://backend-dlp-neuronube.koyeb.app/cards/${updatedCard._id}`, updatedCard);
         setCards((prevCards) =>
           prevCards.map((card) =>
             card._id === updatedCard._id ? updatedCard : card

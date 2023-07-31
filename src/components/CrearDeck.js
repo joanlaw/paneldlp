@@ -4,7 +4,7 @@ import axios from "axios";
 //import Header from "../../components/Header";
 //import Footer from "../../components/Footer";
 import "./CrearDeck.css"; // Importa el archivo CSS
-import arquetiposData from "../data/arquetipos.json";
+//import arquetiposData from "../data/arquetipos.json";
 
 
 const CrearDeck = () => {
@@ -19,12 +19,22 @@ const CrearDeck = () => {
   const [arquetipo, setArquetipo] = useState("");
   const [top, setTop] = useState("");
   const [puesto, setPuesto] = useState("");
-   const [search, setSearch] = useState("");
-  const [arquetipos, setArquetipos] = useState([]);
+  const [link_deck, setLinkDeck] = useState("");
+  const [engine, setEngine] = useState("");
+  const [search, setSearch] = useState("");
+  //const [arquetipos, setArquetipos] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+
+  //arquetipos de api 
+  const [arquetipos, setArquetipos] = useState([]);
+  const [selectedArquetipo, setSelectedArquetipo] = useState('');
+  const [busqueda, setBusqueda] = useState("");
+  const [resultados, setResultados] = useState([]);
+  const [seleccion, setSeleccion] = useState("");
 
   const [visiblePages, setVisiblePages] = useState([]);
 const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
@@ -33,8 +43,28 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
   const cardsPerPage = 50; 
 
   useEffect(() => {
+    if (busqueda.length > 0) {
+      fetch(`https://backend-dlp-neuronube.koyeb.app/arquetipos/?nombre_arquetipo=${busqueda}`)
+        .then((response) => response.json())
+        .then((data) => setResultados(data.arquetipos));
+    } else {
+      setResultados([]);
+    }
+  }, [busqueda]);
+
+  const handleChangee = (event) => {
+    setBusqueda(event.target.value);
+  };
+
+  const handleSelect = (arquetipo) => {
+    setSeleccion(arquetipo.nombre_arquetipo);
+    setResultados([]);
+  };
+
+  
+/*  useEffect(() => {
     setArquetipos(arquetiposData.arquetipos);
-  }, []);
+  }, []); */
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -149,6 +179,12 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
       case "puesto":
         setPuesto(value);
         break;
+        case "link_deck":
+        setLinkDeck(value); // 2. Actualiza el valor del estado 'link_deck' cuando el usuario ingresa algo
+        break;
+        case "engine":
+          setEngine(value);
+          break;
       default:
         break;
     }
@@ -203,7 +239,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
     const extraDeck = Object.values(extraDeckObject);
 
     axios
-      .post("https://back-render-cloud-dlp.onrender.com/mazos/", {
+      .post("https://backend-dlp-neuronube.koyeb.app/mazos/", {
         jugador,
         habilidad,
         arquetipo,
@@ -211,6 +247,8 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
         puesto,
         mainDeck,
         extraDeck,
+        link_deck,
+        engine,
       })
       .then((response) => {
         alert("Mazo creado exitosamente");
@@ -219,6 +257,8 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
         setArquetipo("");
         setTop("");
         setPuesto("");
+        setLinkDeck("");
+        setEngine("");
       })
       .catch((error) => {
         alert("Hubo un error al crear el mazo");
@@ -277,21 +317,28 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
         <label htmlFor="habilidad">Habilidad:</label>
         <input type="text" name="habilidad" value={habilidad} onChange={handleChange} />
 
-        <label htmlFor="arquetipo">Arquetipo:</label>
-        <select name="arquetipo" value={arquetipo} onChange={handleChange}>
-          <option value="">Selecciona un arquetipo</option>
-          {arquetipos.map((arquetipo) => (
-            <option key={arquetipo.arquetipo} value={arquetipo.arquetipo}>
-              {arquetipo.arquetipo}
-            </option>
+        <div className="autocompletado-container">
+      <input className="autocompletado-input" type="text" value={seleccion || busqueda} onChange={handleChangee} placeholder="Busca un arquetipo" />
+      {resultados.length > 0 && (
+        <ul className="autocompletado-resultados">
+          {resultados.map((resultado) => (
+            <li key={resultado._id} onClick={() => handleSelect(resultado)}>{resultado.nombre_arquetipo}</li>
           ))}
-        </select>
+        </ul>
+      )}
+    </div>
 
         <label htmlFor="top">Top:</label>
         <input type="text" name="top" value={top} onChange={handleChange} />
 
         <label htmlFor="puesto">Puesto:</label>
         <input type="text" name="puesto" value={puesto} onChange={handleChange} />
+                  {/*...*/}
+          <label htmlFor="link_deck">Link del Deck:</label> {/* 4. Agrega un nuevo campo en el formulario para 'link_deck' */}
+          <input type="text" name="link_deck" value={link_deck} onChange={handleChange} />
+          {/*...*/}
+          <label htmlFor="motor">Motor:</label>
+        <input type="text" name="engine" value={engine} onChange={handleChange} />
 
         <button type="submit">Crear mazo</button>
       </form>

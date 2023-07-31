@@ -20,6 +20,7 @@ import Footer from './components/Footer';
 import Blog from './components/Blog';
 import Login from './components/Login'; 
 import WithAuth from './components/WithAuth';
+import Arquetipos from './components/Arquetipos'
 
 // Inicializa Firebase
 initializeApp(firebaseConfig);
@@ -52,6 +53,7 @@ function App() {
               <Route path="/lista-box/:boxId" element={<WithAuth component={DetalleBox} />} />
               <Route path="/crear-video" element={<WithAuth component={VideoYt} />} />
               <Route path="/crear-entrada" element={<WithAuth component={Blog} />} />
+              <Route path="/crear-arquetipo" element={<WithAuth component={Arquetipos} />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
