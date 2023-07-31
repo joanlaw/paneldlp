@@ -242,7 +242,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
       .post("https://backend-dlp-neuronube.koyeb.app/mazos/", {
         jugador,
         habilidad,
-        arquetipo,
+        arquetipo: seleccion,
         top,
         puesto,
         mainDeck,
@@ -254,7 +254,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
         alert("Mazo creado exitosamente");
         setJugador("");
         setHabilidad("");
-        setArquetipo("");
+        setArquetipo(seleccion);
         setTop("");
         setPuesto("");
         setLinkDeck("");
