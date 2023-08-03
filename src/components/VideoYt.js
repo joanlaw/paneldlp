@@ -28,7 +28,7 @@ function VideoYt() {
     };
 
     try {
-      const response = await fetch('https://back-render-cloud-dlp.onrender.com/videos', {
+      const response = await fetch('https://backend-dlp-neuronube.koyeb.app/videos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

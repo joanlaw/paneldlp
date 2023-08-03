@@ -17,7 +17,7 @@ const DetalleBox = () => {
   useEffect(() => {
     const fetchBoxData = async () => {
       try {
-        const response = await axios.get(`https://back-render-cloud-dlp.onrender.com/boxes/${boxId}`);
+        const response = await axios.get(`https://backend-dlp-neuronube.koyeb.app/boxes/${boxId}`);
         setBox(response.data);
       } catch (error) {
         console.error(error);
@@ -31,19 +31,19 @@ const DetalleBox = () => {
     const fetchCardData = async () => {
       if (box && box.cartas_ur && box.cartas_sr && box.cartas_r && box.cartas_n) {
         const urCardPromises = box.cartas_ur.map(carta =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/cards/${carta._id}`)
+          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
         );
 
         const srCardPromises = box.cartas_sr.map(carta =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/cards/${carta._id}`)
+          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
         );
 
         const rCardPromises = box.cartas_r.map(carta =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/cards/${carta._id}`)
+          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
         );
 
         const nCardPromises = box.cartas_n.map(carta =>
-          axios.get(`https://back-render-cloud-dlp.onrender.com/cards/${carta._id}`)
+          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
         );
 
         try {
@@ -76,7 +76,7 @@ const DetalleBox = () => {
 
   const handleUpdateCard = async (updatedCard) => {
     try {
-      await axios.put(`https://api.duellinks.pro/cards/${updatedCard._id}`, updatedCard);
+      await axios.put(`https://backend-dlp-neuronube.koyeb.app/cards/${updatedCard._id}`, updatedCard);
 
       if (selectedCard) {
         switch (selectedCard.rareza) {
