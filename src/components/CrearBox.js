@@ -31,7 +31,7 @@ const CrearBox = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://api.duellinks.pro/cards?page=${page}&size=10&search=${searchTerm}`
+          `https://backend-dlp-neuronube.koyeb.app/cards?page=${page}&size=10&search=${searchTerm}`
         );
         setCartas(response.data.docs);
         setLoading(false);
@@ -154,7 +154,7 @@ const CrearBox = () => {
     };
 
     axios
-      .post("https://back-render-cloud-dlp.onrender.com/boxes", boxData)
+      .post("https://backend-dlp-neuronube.koyeb.app/boxes", boxData)
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
 
