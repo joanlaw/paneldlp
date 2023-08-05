@@ -136,7 +136,7 @@ const DetalleBox = () => {
           {cartasUR.map(carta => (
             <div key={carta._id} className="carta-item">
               <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-              <p>{carta.nombre}</p>
+             {/* <p>{carta.nombre}</p>*/} 
               <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
             </div>
           ))}
@@ -150,7 +150,7 @@ const DetalleBox = () => {
           {cartasSR.map(carta => (
             <div key={carta._id} className="carta-item">
               <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-              <p>{carta.nombre}</p>
+              {/* <p>{carta.nombre}</p>*/} 
               <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
             </div>
           ))}
@@ -164,7 +164,7 @@ const DetalleBox = () => {
           {cartasR.map(carta => (
             <div key={carta._id} className="carta-item">
               <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-              <p>{carta.nombre}</p>
+              {/* <p>{carta.nombre}</p>*/} 
               <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
             </div>
           ))}
@@ -178,7 +178,7 @@ const DetalleBox = () => {
           {cartasN.map(carta => (
             <div key={carta._id} className="carta-item">
               <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-              <p>{carta.nombre}</p>
+            {/* <p>{carta.nombre}</p>*/} 
               <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
             </div>
           ))}

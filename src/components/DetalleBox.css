@@ -123,6 +123,7 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 10px;
+    max-width: 1400px;
   }
   
   .carta-item {

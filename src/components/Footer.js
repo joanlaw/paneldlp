@@ -4,11 +4,11 @@ import { Typography } from "antd";
 function Footer() {
   return (
     <div className="AppFooter">
-    <Typography.Link href="tel:+123456789">+123456789</Typography.Link>
-    <Typography.Link href="https://www.google.com" target={"_blank"}>
+    <Typography.Link href="https://duellinks.pro">Duel Links Pro</Typography.Link>
+    <Typography.Link href="https://duellinks.pro" target={"_blank"}>
       Privacy Policy
     </Typography.Link>
-    <Typography.Link href="https://www.google.com" target={"_blank"}>
+    <Typography.Link href="https://duellinks.pro  " target={"_blank"}>
       Terms of Use
     </Typography.Link>
   </div>

@@ -146,7 +146,7 @@ const CardEditor = () => {
           onChange={handleSearch}
         />
       </div>
-      <div className="card-grid">{renderCards()}</div>
+      <div className="card-grid-home">{renderCards()}</div>
       {selectedCard && (
         <div className="modal-overlay" onClick={handleModalOverlayClick}>
           <div className="modal" onClick={(event) => event.stopPropagation()}>
