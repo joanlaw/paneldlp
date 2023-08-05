@@ -142,3 +142,24 @@
     margin-bottom: 10px;
   }
   
+  /* Estilos para el botón de eliminación */
+.delete-box-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiar el color del botón al pasar el mouse por encima */
+.delete-box-button:hover {
+  background-color: #c0392b;
+}
+
+/* Cambiar el color del botón al hacer clic */
+.delete-box-button:active {
+  background-color: #962d22;
+}

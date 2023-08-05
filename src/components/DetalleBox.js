@@ -109,10 +109,27 @@ const DetalleBox = () => {
     setSelectedCard(null);
   };
 
+  const handleDeleteBox = async () => {
+    try {
+      await axios.delete(`https://backend-dlp-neuronube.koyeb.app/boxes/${boxId}`);
+      // Redirect the user to the previous page or any other desired action after deletion
+      // For example: window.location.href = '/boxes';
+    } catch (error) {
+      console.error('Error al eliminar la box:', error);
+    }
+  };
+
+
   return (
     <div>
       <h2>Detalle de la Box: {boxId}</h2>
       {/* Renderizar las cartas UR */}
+      <div>
+      {/* Button to Delete the Box */}
+      <button className="delete-box-button" onClick={handleDeleteBox}>
+        Eliminar Box
+      </button>
+    </div>
       <h3>Cartas UR</h3>
       <div className="cartas-container">
         <div className="cartas-grid">
