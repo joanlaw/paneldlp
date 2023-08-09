@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './VideoYt.css';
 
 function VideoYt() {
@@ -11,6 +11,7 @@ function VideoYt() {
   const [deck4, setDeck4] = useState('');
   const [deck5, setDeck5] = useState('');
   const [bannerVideo, setBannerVideo] = useState('');
+  const [alert, setAlert] = useState(null); // Nuevo estado para la alerta
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ function VideoYt() {
       deckv3: deck3,
       deckv4: deck4,
       deckv5: deck5,
-      banner_video: bannerVideo, // Agregamos el campo "banner_video" al objeto de datos
+      banner_video: bannerVideo,
     };
 
     try {
@@ -35,22 +36,47 @@ function VideoYt() {
         },
         body: JSON.stringify(videoData),
       });
-
+    
       if (response.ok) {
-        // El video se creó exitosamente
-        console.log('Video creado');
+        // Mostrar alerta de éxito
+        setAlert({ type: 'success', message: 'Video creado exitosamente' });
+        // Reiniciar campos del formulario
+        setTitulo('');
+        setDescripcion('');
+        setLinkVideo('');
+        setDeck('');
+        setDeck2('');
+        setDeck3('');
+        setDeck4('');
+        setDeck5('');
+        setBannerVideo('');
       } else {
-        // Ocurrió un error al crear el video
-        console.log('Error al crear el video');
+        // Mostrar alerta de error
+        setAlert({ type: 'error', message: 'Error al crear el video' });
       }
     } catch (error) {
       console.error(error);
     }
+    
   };
+
+  useEffect(() => {
+    // Limpia la alerta después de un tiempo
+    const timer = setTimeout(() => {
+      setAlert(null);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [alert]);
 
   return (
     <div className="video-yt-container">
       <h1 className="video-yt-title">Crear Video</h1>
+      {alert && (
+        <div className={`alert ${alert.type}`}>
+          {alert.message}
+        </div>
+      )}
       <form className="video-yt-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="form-label">Título:</label>
@@ -136,6 +162,7 @@ function VideoYt() {
       </form>
     </div>
   );
+  
 }
 
 export default VideoYt;
