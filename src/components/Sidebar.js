@@ -26,7 +26,7 @@ const Sidebar = () => {
       </Menu.Item>
       <Menu.Item key="/crear-torneo" className="sidebar-menu-item">
         <Link to="/crear-torneo" className="sidebar-menu-link">
-          Crear Torneo
+          Crear Reporte
         </Link>
       </Menu.Item>
       <Menu.Item key="/crear-video" className="sidebar-menu-item">
@@ -44,6 +44,12 @@ const Sidebar = () => {
       <Menu.Item key="/crear-arquetipo" className="sidebar-menu-item">
         <Link to="/crear-arquetipo" className="sidebar-menu-link">
           Crear Arquetipo
+        </Link>
+      </Menu.Item>
+
+      <Menu.Item key="/crear-liga" className="sidebar-menu-item">
+        <Link to="/crear-liga" className="sidebar-menu-link">
+          Crear Torneo
         </Link>
       </Menu.Item>
 

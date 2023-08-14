@@ -21,6 +21,7 @@ import Blog from './components/Blog';
 import Login from './components/Login'; 
 import WithAuth from './components/WithAuth';
 import Arquetipos from './components/Arquetipos'
+import LeagueForm from './components/LeagueForm';
 
 // Inicializa Firebase
 initializeApp(firebaseConfig);
@@ -54,6 +55,7 @@ function App() {
               <Route path="/crear-video" element={<WithAuth component={VideoYt} />} />
               <Route path="/crear-entrada" element={<WithAuth component={Blog} />} />
               <Route path="/crear-arquetipo" element={<WithAuth component={Arquetipos} />} />
+              <Route path="/crear-liga" element={<WithAuth component={LeagueForm} />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>

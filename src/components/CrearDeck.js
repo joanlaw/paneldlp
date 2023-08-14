@@ -328,8 +328,13 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
       )}
     </div>
 
-        <label htmlFor="top">Top:</label>
-        <input type="text" name="top" value={top} onChange={handleChange} />
+    <label htmlFor="top">Top:</label>
+<select name="top" value={top} onChange={handleChange}>
+  <option value="Rey de duelos">Rey de duelos</option>
+  <option value="Ensalada">Ensalada</option>
+  <option value="Fun">Fun</option>
+  <option value="Farmeo">Farmeo</option>
+</select>
 
         <label htmlFor="puesto">Puesto:</label>
         <input type="text" name="puesto" value={puesto} onChange={handleChange} />
