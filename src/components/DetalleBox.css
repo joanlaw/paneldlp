@@ -14,7 +14,7 @@ h2, h3 {
 
 .cartas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Hace que las columnas sean responsivas */
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Hace que las columnas sean responsivas */
   gap: 10px;
 }
 
