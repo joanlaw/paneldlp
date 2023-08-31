@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CardForm from './CardForm';
 import './CardEditor.css';
+import { Modal } from 'antd';
+
 
 const CardEditor = () => {
   const [cards, setCards] = useState([]);
@@ -148,20 +150,21 @@ const CardEditor = () => {
       </div>
       <div className="card-grid-home">{renderCards()}</div>
       {selectedCard && (
-        <div className="modal-overlay" onClick={handleModalOverlayClick}>
-          <div className="modal" onClick={(event) => event.stopPropagation()}>
-            <div className="modal-left">
-              <img src={selectedCard.image.secure_url} alt={selectedCard.nombre} className="modal-card-image" />
-            </div>
-            <div className="modal-right">
-              <CardForm
-                card={selectedCard}
-                onSubmit={handleUpdateCard}
-                onCancel={() => setSelectedCard(null)}
-              />
-            </div>
-          </div>
-        </div>
+        <Modal
+  title="Editar carta"
+  visible={selectedCard !== null}
+  onCancel={() => setSelectedCard(null)}
+  footer={null}
+>
+  {selectedCard && (
+    <CardForm
+      card={selectedCard}
+      onSubmit={handleUpdateCard}
+      onCancel={() => setSelectedCard(null)}
+    />
+  )}
+</Modal>
+
       )}
       {renderPagination()}
     </div>

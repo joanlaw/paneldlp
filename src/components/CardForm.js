@@ -16,9 +16,9 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
 
   return (
     <div className="card-form">
-      <h2>Editar carta</h2>
+      
       <form onSubmit={handleSubmit}>
-        <div>
+     {/*   <div>
           <label>Imagen:</label>
           <input
             type="text"
@@ -26,9 +26,9 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             value={updatedCard.image.secure_url}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div>
-          <label>Nombre:</label>
+          <label>Nombre Español:</label>
 
           <input
             type="text"
@@ -37,7 +37,28 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             onChange={handleChange}
           />
         </div>
+         {/*
         <div>
+         <label>Name English</label>
+
+          <input
+            type="text"
+            name="name_en"
+            value={updatedCard.name_english}
+            onChange={handleChange}
+          />
+        </div>
+         */}
+        <div>
+          <label>Rareza:</label>
+          <input
+            type="text"
+            name="rareza"
+            value={updatedCard.rareza}
+            onChange={handleChange}
+          />
+        </div>
+    {/*   <div>
           <label>Tipo de carta:</label>
           <select
             name="tipo_de_carta"
@@ -60,6 +81,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
                                         <option value="Link">Link</option>
                                         </select>
         </div>
+         
         <div>
           <label>Atributo:</label>
           <select
@@ -153,15 +175,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label>Rareza:</label>
-          <input
-            type="text"
-            name="rareza"
-            value={updatedCard.rareza}
-            onChange={handleChange}
-          />
-        </div>
+         */}
         <div>
           <label>Limitación:</label>
           <input
@@ -171,6 +185,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             onChange={handleChange}
           />
         </div>
+        {/* 
         <div>
           <label>ATK:</label>
           <input
@@ -189,6 +204,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             onChange={handleChange}
           />
         </div>
+        */}
         <div>
           <label>Materiales:</label>
           <input
@@ -199,10 +215,18 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
           />
         </div>
         <div>
-          <label>Descripción:</label>
+          <label>Descripción Inglés:</label>
           <textarea
             name="descripcion"
             value={updatedCard.descripcion}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Descripción Español</label>
+          <textarea
+            name="descripcion_es"
+            value={updatedCard.descripcion_es}
             onChange={handleChange}
           />
         </div>
@@ -214,6 +238,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             onChange={handleChange}
           />
         </div>
+        {/*
         <div>
           <label>Adicional:</label>
           <input
@@ -223,6 +248,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             onChange={handleChange}
           />
         </div>
+         */}
         <div>
           <button type="submit">Actualizar</button>
           <button type="button" onClick={onCancel}>Cancelar</button>

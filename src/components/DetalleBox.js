@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import CardEditor from './CardEditor';
 import CardForm from './CardForm';
 import './DetalleBox.css';
+import { Modal } from 'antd';
 
 const DetalleBox = () => {
   const { boxId } = useParams();
@@ -28,47 +29,48 @@ const DetalleBox = () => {
   }, [boxId]);
 
   useEffect(() => {
-    const fetchCardData = async () => {
-      if (box && box.cartas_ur && box.cartas_sr && box.cartas_r && box.cartas_n) {
-        const urCardPromises = box.cartas_ur.map(carta =>
-          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
-        );
-
-        const srCardPromises = box.cartas_sr.map(carta =>
-          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
-        );
-
-        const rCardPromises = box.cartas_r.map(carta =>
-          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
-        );
-
-        const nCardPromises = box.cartas_n.map(carta =>
-          axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
-        );
-
-        try {
-          const urCardResponses = await Promise.all(urCardPromises);
-          const srCardResponses = await Promise.all(srCardPromises);
-          const rCardResponses = await Promise.all(rCardPromises);
-          const nCardResponses = await Promise.all(nCardPromises);
-
-          const urCardsData = urCardResponses.map(response => response.data);
-          const srCardsData = srCardResponses.map(response => response.data);
-          const rCardsData = rCardResponses.map(response => response.data);
-          const nCardsData = nCardResponses.map(response => response.data);
-
-          setCartasUR(urCardsData);
-          setCartasSR(srCardsData);
-          setCartasR(rCardsData);
-          setCartasN(nCardsData);
-        } catch (error) {
-          console.error(error);
+    // Cuando selectedCard es null, significa que una carta fue editada y guardada
+    if (selectedCard === null) {
+      const fetchCardData = async () => {
+        if (box && box.cartas_ur && box.cartas_sr && box.cartas_r && box.cartas_n) {
+          const urCardPromises = box.cartas_ur.map(carta =>
+            axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
+          );
+          const srCardPromises = box.cartas_sr.map(carta =>
+            axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
+          );
+          const rCardPromises = box.cartas_r.map(carta =>
+            axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
+          );
+          const nCardPromises = box.cartas_n.map(carta =>
+            axios.get(`https://backend-dlp-neuronube.koyeb.app/cards/${carta._id}`)
+          );
+  
+          try {
+            const urCardResponses = await Promise.all(urCardPromises);
+            const srCardResponses = await Promise.all(srCardPromises);
+            const rCardResponses = await Promise.all(rCardPromises);
+            const nCardResponses = await Promise.all(nCardPromises);
+  
+            const urCardsData = urCardResponses.map(response => response.data);
+            const srCardsData = srCardResponses.map(response => response.data);
+            const rCardsData = rCardResponses.map(response => response.data);
+            const nCardsData = nCardResponses.map(response => response.data);
+  
+            setCartasUR(urCardsData);
+            setCartasSR(srCardsData);
+            setCartasR(rCardsData);
+            setCartasN(nCardsData);
+          } catch (error) {
+            console.error(error);
+          }
         }
-      }
-    };
-
-    fetchCardData();
-  }, [box]);
+      };
+  
+      fetchCardData();
+    }
+  }, [selectedCard, box]);
+  
 
   const handleEditCard = (card) => {
     setSelectedCard(card);
@@ -77,7 +79,7 @@ const DetalleBox = () => {
   const handleUpdateCard = async (updatedCard) => {
     try {
       await axios.put(`https://backend-dlp-neuronube.koyeb.app/cards/${updatedCard._id}`, updatedCard);
-
+  
       if (selectedCard) {
         switch (selectedCard.rareza) {
           case 'UR':
@@ -96,14 +98,14 @@ const DetalleBox = () => {
             break;
         }
       }
-      
-      setSelectedCard(null);
-      
+  
+      setSelectedCard(null);  // Esto debería desencadenar la actualización de la UI
       
     } catch (error) {
       console.error('Error al actualizar la carta:', error);
     }
   };
+  
 
   const handleModalOverlayClick = () => {
     setSelectedCard(null);
@@ -134,11 +136,13 @@ const DetalleBox = () => {
       <div className="cartas-container">
         <div className="cartas-grid">
           {cartasUR.map(carta => (
-            <div key={carta._id} className="carta-item">
-              <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-             {/* <p>{carta.nombre}</p>*/} 
-              <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
-            </div>
+            <div 
+  key={carta._id} 
+  className="carta-item" 
+  onClick={() => handleEditCard(carta)}  // Mover el evento onClick aquí
+>
+  <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
+</div>
           ))}
         </div>
       </div>
@@ -148,11 +152,13 @@ const DetalleBox = () => {
       <div className="cartas-container">
         <div className="cartas-grid">
           {cartasSR.map(carta => (
-            <div key={carta._id} className="carta-item">
-              <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-              {/* <p>{carta.nombre}</p>*/} 
-              <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
-            </div>
+            <div 
+  key={carta._id} 
+  className="carta-item" 
+  onClick={() => handleEditCard(carta)}  // Mover el evento onClick aquí
+>
+  <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
+</div>
           ))}
         </div>
       </div>
@@ -162,11 +168,13 @@ const DetalleBox = () => {
       <div className="cartas-container">
         <div className="cartas-grid">
           {cartasR.map(carta => (
-            <div key={carta._id} className="carta-item">
-              <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-              {/* <p>{carta.nombre}</p>*/} 
-              <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
-            </div>
+            <div 
+  key={carta._id} 
+  className="carta-item" 
+  onClick={() => handleEditCard(carta)}  // Mover el evento onClick aquí
+>
+  <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
+</div>
           ))}
         </div>
       </div>
@@ -176,31 +184,33 @@ const DetalleBox = () => {
       <div className="cartas-container">
         <div className="cartas-grid">
           {cartasN.map(carta => (
-            <div key={carta._id} className="carta-item">
-              <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
-            {/* <p>{carta.nombre}</p>*/} 
-              <button onClick={() => handleEditCard(carta)}>Editar Carta</button>
-            </div>
+                    <div 
+          key={carta._id} 
+          className="carta-item" 
+          onClick={() => handleEditCard(carta)}  // Mover el evento onClick aquí
+        >
+          <img src={carta.image.secure_url} alt={carta.nombre} className="carta-imagen" />
+        </div>
           ))}
         </div>
       </div>
 
       {/* Renderizar el editor de cartas si hay una carta seleccionada */}
       {selectedCard && (
-        <div className="modal-overlay" onClick={handleModalOverlayClick}>
-          <div className="modal" onClick={(event) => event.stopPropagation()}>
-            <div className="modal-left">
-              <img src={selectedCard.image.secure_url} alt={selectedCard.nombre} className="modal-card-image" />
-            </div>
-            <div className="modal-right">
-              <CardForm
-                card={selectedCard}
-                onSubmit={handleUpdateCard}
-                onCancel={() => setSelectedCard(null)}
-              />
-            </div>
-          </div>
-        </div>
+        <Modal
+  title="Editar carta"
+  visible={selectedCard !== null}
+  onCancel={() => setSelectedCard(null)}
+  footer={null}
+>
+  {selectedCard && (
+    <CardForm
+      card={selectedCard}
+      onSubmit={handleUpdateCard}
+      onCancel={() => setSelectedCard(null)}
+    />
+  )}
+</Modal>
       )}
     </div>
   );
