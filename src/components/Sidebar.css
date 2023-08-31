@@ -9,6 +9,10 @@
   justify-content: space-between;
 }
 
+.sidebar-toggle-button {
+  display: none; /* Ocultar por defecto */
+}
+
 .sidebar-menu {
   list-style: none;
   padding: 0;
@@ -116,5 +120,37 @@
 
   .sidebar-btn {
     padding: 0.5rem;
+  }
+}
+
+/* Mostrar el botón solo en dispositivos móviles */
+@media (max-width: 768px) {
+  .sidebar-toggle-button {
+    display: block;
+    font-size: 24px;
+    margin: 10px;
+    cursor: pointer;
+  }
+}
+
+/* Estilo cuando el sidebar está cerrado */
+.SideMenu {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+/* Estilo cuando el sidebar está abierto */
+.SideMenu.open {
+  transform: translateX(0);
+}
+
+/* En pantallas más grandes, mostrar el sidebar por defecto y ocultar el botón de apertura */
+@media (min-width: 768px) {
+  .SideMenu {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle-button {
+    display: none;
   }
 }

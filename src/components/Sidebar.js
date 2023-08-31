@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css'; // Importa el archivo de estilos CSS
 import { Menu } from 'antd';
@@ -10,9 +10,17 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
+
 const Sidebar = () => {
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
-    <div className="SideMenu">
+    <div>
+        <button className="sidebar-toggle-button" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+    ☰
+  </button>
+    <div className={`SideMenu ${isSidebarOpen ? 'open' : ''}`}>
     <Menu className="SideMenuVertical" mode="vertical">
       <Menu.Item key="/crear-deck" className="sidebar-menu-item">
         <Link to="/crear-deck" className="sidebar-menu-link">
@@ -61,6 +69,7 @@ const Sidebar = () => {
         </Link>
       </Menu.Item>
     </Menu>
+  </div>
   </div>
   );
 };
