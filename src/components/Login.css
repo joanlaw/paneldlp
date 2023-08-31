@@ -1,20 +1,18 @@
+/* Estilos existentes y mejorados */
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center; /* Centra el formulario en la pantalla */
     align-items: center;
-    padding-top: 50px;
     height: 100vh;
     background-color: #f5f5f5;
 }
 
-/* ... El resto del código CSS se mantiene igual ... */
-
-
 .form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 90%; /* Ancho relativo para dispositivos más pequeños */
+    max-width: 400px; /* Ancho máximo para dispositivos más grandes */
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -23,6 +21,7 @@
 
 .input {
     margin-bottom: 20px;
+    font-size: 16px; /* Tamaño de fuente más grande para una mejor accesibilidad */
 }
 
 .button {
@@ -32,4 +31,20 @@
     padding: 10px;
     border: none;
     border-radius: 4px;
+    font-size: 16px; /* Tamaño de fuente más grande para una mejor accesibilidad */
+}
+
+/* Estilos para pantallas medianas y grandes */
+@media (min-width: 768px) {
+    .form {
+        width: 60%; /* Ancho más estrecho para pantallas más grandes */
+    }
+
+    .input {
+        font-size: 18px;
+    }
+
+    .button {
+        font-size: 18px;
+    }
 }

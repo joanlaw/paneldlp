@@ -1,48 +1,56 @@
-.AppHeader{
-    height: 50px;
+.AppHeader, .AppFooter {
+    height: 60px; /* Aumento de la altura para más espacio */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 20px 4px 12px;
+    padding: 4px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
-
-.AppFooter{
-height: 50px;
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-border-top: 1px solid rgba(0, 0, 0, 0.15);
-
-}
-.SideMenuAndPageContent{
+.SideMenuAndPageContent {
     display: flex;
+    flex-direction: column; /* Cambio a columna para móviles */
     flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.05) ;
+    background-color: rgba(0, 0, 0, 0.05);
 }
+
 .SideMenu{
     height: 100%;
 }
 .SideMenuVertical{
     height: 100%;
 }
-.PageContent{
-    padding-left: 12px;
+.PageContent {
+    flex: 1;
+    padding: 12px;
 }
-
-.App{
+.App {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    width: 100vw; /* Usa 100vw en lugar de 100% para tomar todo el ancho de la ventana */
+    min-height: 100vh; /* Asegura que tenga al menos la altura de la ventana */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño del elemento */
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0; /* Elimina cualquier relleno */
+
+  }
+  
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .AppHeader, .AppFooter {
+        flex-direction: column; /* Cambio a columna para más espacio */
+        height: auto;
+        padding: 10px;
+    }
+    
+    .SideMenuAndPageContent {
+        flex-direction: column;
+    }
 }
-.AppHeader{
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 20px 4px 12px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+/* Estilos para pantallas medianas y grandes */
+@media (min-width: 768px) {
+    .SideMenuAndPageContent {
+        flex-direction: row;
+    }
 }

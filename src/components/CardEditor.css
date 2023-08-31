@@ -115,3 +115,44 @@
   margin: 0 10px;
 }
 
+/* Estilos existentes */
+
+/* Mobile First: Estilos para pantallas pequeñas por defecto */
+.card-grid-home {
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+}
+
+.modal {
+  flex-direction: column; /* apilar los elementos en vertical */
+}
+
+.modal-left,
+.modal-right {
+  flex: 1;
+  padding: 10px; /* reducir el padding */
+}
+
+/* Estilos para pantallas medianas y grandes */
+@media (min-width: 768px) {
+  .card-grid-home {
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas en tablet */
+  }
+  
+  .modal {
+    flex-direction: row; /* volver a la disposición en fila */
+  }
+  
+  .modal-left,
+  .modal-right {
+    padding: 20px; /* volver al padding original */
+  }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1024px) {
+  .card-grid-home {
+    grid-template-columns: repeat(8, 1fr); /* 8 columnas en desktop */
+  }
+}
+
+

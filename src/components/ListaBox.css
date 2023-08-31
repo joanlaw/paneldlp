@@ -1,31 +1,48 @@
 .lista-box-container {
-    padding: 20px;
-  }
-  
-  .box-flex-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
+  padding: 20px;
+}
+
+.box-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Añadido para mejorar el espaciado */
+}
+
+.box-item {
+  flex: 1;
+  min-width: calc(25% - 20px); /* Añadido cálculo para tener en cuenta el padding */
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box; /* Añadido para evitar problemas de tamaño */
+}
+
+.box-item img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+/* Añadido z-index para asegurar que el botón no se superponga a otros elementos */
+.crear-box-button {
+  position: fixed;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
   .box-item {
-    flex: 0 0 25%;
-    padding: 10px;
-    text-align: center;
+    min-width: calc(50% - 20px); /* 2 cajas por fila en dispositivos móviles */
   }
-  
-  .box-item img {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
+}
+
+@media (max-width: 480px) {
+  .box-item {
+    min-width: 100%; /* 1 caja por fila en dispositivos más pequeños */
   }
-  
-  .crear-box-button {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    text-decoration: none;
-  }
-  
+}

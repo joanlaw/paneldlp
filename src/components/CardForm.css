@@ -1,5 +1,6 @@
-/*.card-form {
-  width: 80%; 
+.card-form {
+  width: 100%; 
+  max-width: 800px;  /* Limita el ancho máximo */
   height: 80vh; 
   max-height: 80vh; 
   overflow-y: auto; 
@@ -7,9 +8,8 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;  /* Centra el formulario horizontalmente */
 }
-
-
 
 .card-form h2 {
   margin-bottom: 20px;
@@ -54,4 +54,17 @@
   background: #6c757d;
   margin-left: 10px;
 }
-*/
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .card-form {
+    padding: 15px;  /* Reduce el padding en dispositivos pequeños */
+  }
+  
+  .card-form input,
+  .card-form select,
+  .card-form textarea,
+  .card-form button {
+    font-size: 14px;  /* Reduce el tamaño de fuente en dispositivos pequeños */
+  }
+}

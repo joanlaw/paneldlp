@@ -210,3 +210,43 @@ h1 {
 .autocompletado-resultados li:hover {
   background: #f5f5f5;
 }
+
+/* Estilos existentes ... */
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .deck-builder {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+  }
+  
+  .box-item,
+  .card-item,
+  .deck-card,
+  .extra-deck-card,
+  .side-deck-card {
+    flex: 0 0 100%; /* Ocupar todo el ancho en móviles */
+  }
+
+  .deck, .extra-deck, .side-deck {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Estilos para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .deck-builder {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en tablet */
+  }
+  
+  .box-item,
+  .card-item {
+    flex: 0 0 50%; /* Ocupar la mitad del ancho en tablet */
+  }
+
+  .deck-card,
+  .extra-deck-card,
+  .side-deck-card {
+    flex: 0 0 calc(33.33% - 10px); /* 3 cartas por fila */
+  }
+}
