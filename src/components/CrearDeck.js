@@ -276,11 +276,17 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
 
   const results = !searchTerm
   ? cartas
-  : cartas.filter(
-      (carta) =>
-        carta.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        carta.name_english.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  : cartas.filter((carta) => {
+      // Verificar que la carta no sea nula y que las propiedades nombre y name_english existan
+      if (carta && carta.nombre && carta.name_english) {
+        return (
+          carta.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          carta.name_english.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+      return false; // Si la carta es nula o las propiedades no existen, no la incluyas en los resultados
+    });
+
 
   const cartasPorPagina = 25;
   const paginaInicio = (page - 1) * cartasPorPagina;
