@@ -31,7 +31,7 @@ const CrearBox = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://backend-dlp-neuronube.koyeb.app/cards?page=${page}&size=10&search=${searchTerm}`
+          `https://backend-dlp-neuronube.koyeb.app/cards?page=${page}&size=50&search=${searchTerm}`
         );
         setCartas(response.data.docs);
         setLoading(false);
