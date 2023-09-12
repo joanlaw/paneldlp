@@ -108,3 +108,48 @@
     max-width: 100px;
   }
   
+  /* Estilos adicionales para el formulario 
+.container-crear-box form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container-crear-box label {
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+}
+
+.container-crear-box input,
+.container-crear-box select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.container-crear-box input:focus,
+.container-crear-box select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.container-crear-box button[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container-crear-box button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+*/

@@ -220,14 +220,17 @@ const CrearBox = () => {
             <label htmlFor="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" value={nombre} onChange={handleChange} />
 
-            <label htmlFor="tipoDeBox">Tipo de Box:</label>
-            <input
-              type="text"
-              id="tipoDeBox"
-              name="tipoDeBox"
-              value={tipoDeBox}
-              onChange={handleChange}
-            />
+                      <label htmlFor="tipoDeBox">Tipo de Box:</label>
+          <select
+            id="tipoDeBox"
+            name="tipoDeBox"
+            value={tipoDeBox}
+            onChange={handleChange}
+          >
+            <option value="mini-box">Mini-Box</option>
+            <option value="main-box">Main-Box</option>
+          </select>
+
 
             <label htmlFor="fechaDeLanzamiento">Fecha de Lanzamiento:</label>
             <input
