@@ -227,6 +227,7 @@ const CrearBox = () => {
             value={tipoDeBox}
             onChange={handleChange}
           >
+            <option value="">Selecciona una opcion</option>
             <option value="mini-box">Mini-Box</option>
             <option value="main-box">Main-Box</option>
           </select>

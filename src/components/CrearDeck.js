@@ -336,6 +336,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
 
     <label htmlFor="top">Top:</label>
 <select name="top" value={top} onChange={handleChange}>
+<option value="">Selecciona una opcion</option>
   <option value="Rey de duelos">Rey de duelos</option>
   <option value="Torneo LHC #1">Torneo LHC #1</option>
   <option value="Torneo LHC #2">Torneo LHC #2</option>
