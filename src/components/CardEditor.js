@@ -16,7 +16,7 @@ const CardEditor = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get('https://backend-dlp-neuronube.koyeb.app/cards/', {
+        const response = await axios.get('https://api.duellinks.pro/cards/', {
           params: {
             search: searchTerm,
             page: currentPage - 1,
