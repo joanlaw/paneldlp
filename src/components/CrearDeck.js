@@ -341,6 +341,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
   <option value="Torneo LHC #1">Torneo LHC #1</option>
   <option value="Torneo LHC #2">Torneo LHC #2</option>
   <option value="Torneo LHC #3">Torneo LHC #3</option>
+  <option value="ND Max">ND Max</option>
   <option value="Ensalada">Ensalada</option>
 
   <option value="Fun">Fun</option>
