@@ -39,12 +39,14 @@ const CrearDeck = () => {
   const [visiblePages, setVisiblePages] = useState([]);
 const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
 
+const [totalEstimatedCost, setTotalEstimatedCost] = useState(0);  // Nuevo estado para el costo total estimado
+
 
   const cardsPerPage = 50; 
 
   useEffect(() => {
     if (busqueda.length > 0) {
-      fetch(`https://backend-dlp-neuronube.koyeb.app/arquetipos/?nombre_arquetipo=${busqueda}`)
+      fetch(`https://api.duellinks.pro/arquetipos/?nombre_arquetipo=${busqueda}`)
         .then((response) => response.json())
         .then((data) => setResultados(data.arquetipos));
     } else {
@@ -60,6 +62,7 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
     setSeleccion(arquetipo.nombre_arquetipo);
     setResultados([]);
   };
+
 
   
 /*  useEffect(() => {
@@ -106,16 +109,29 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
     fetchCards();
   }, [searchTerm, currentPage, cardsPerPage, maxVisiblePages, totalPages]);
   
+  const updateCardCost = async (cardId, operation) => {
+    try {
+      const response = await axios.get(`https://api.duellinks.pro/cards/${cardId}/costo`);
+      const cardCost = response.data.estimatedCost; // Asume que el costo estimado viene en este campo
+      setTotalEstimatedCost(prevTotal => operation === 'add' ? prevTotal + cardCost : prevTotal - cardCost);
+    } catch (error) {
+      console.error('Error al obtener el costo de la carta:', error);
+    }
+  };
+
+
   
 
-  const handleAgregarCarta = (carta) => {
+  const handleAgregarCarta = async (carta) => {
     if (deck.length < 30) {
+      await updateCardCost(carta._id, 'add');
       setDeck([...deck, carta]);
     }
   };
 
-  const handleAgregarCartaDeckExtra = (carta) => {
+  const handleAgregarCartaDeckExtra = async (carta) => {
     if (deckextra.length < 8) {
+      await updateCardCost(carta._id, 'add');
       setDeckextra([...deckextra, carta]);
     }
   };
@@ -144,15 +160,17 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
     }
   };
 
-  const handleQuitarCarta = (index) => {
+  const handleQuitarCarta = async (index) => {
     const newDeck = [...deck];
-    newDeck.splice(index, 1);
+    const cardToRemove = newDeck.splice(index, 1)[0];
+    await updateCardCost(cardToRemove._id, 'subtract');
     setDeck(newDeck);
   };
 
-  const handleQuitarCartaExtra = (index) => {
+  const handleQuitarCartaExtra = async (index) => {
     const newDeckExtra = [...deckextra];
-    newDeckExtra.splice(index, 1);
+    const cardToRemove = newDeckExtra.splice(index, 1)[0];
+    await updateCardCost(cardToRemove._id, 'subtract');
     setDeckextra(newDeckExtra);
   };
 
@@ -341,6 +359,9 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
   <option value="Torneo LHC #1">Torneo LHC #1</option>
   <option value="Torneo LHC #2">Torneo LHC #2</option>
   <option value="Torneo LHC #3">Torneo LHC #3</option>
+  <option value="Torneo LHC #4">Torneo LHC #4</option>
+  <option value="Torneo LHC #5">Torneo LHC #5</option>
+  <option value="Rogue Pro #3">Rogue Pro #3</option>
   <option value="ND Max">ND Max</option>
   <option value="Ensalada">Ensalada</option>
 
@@ -399,15 +420,17 @@ const maxVisiblePages = 5; // Limita a 5 páginas visibles en la paginación
     </div>
 
     <div className="deck-section">
-      <h2>Deck</h2>
-      <div className="deck">
-      {deck.map((carta, index) => (
-            <div key={index} className="deck-card" onClick={() => handleQuitarCarta(index)}>
-              <img src={carta.image.secure_url} alt={carta.nombre} />
-            </div>
-          ))}
+  <h2>Deck</h2>
+  <h3>Costo total estimado: {totalEstimatedCost}</h3>  {/* Aquí se muestra el costo total estimado */}
+  <div className="deck">
+    {deck.map((carta, index) => (
+      <div key={index} className="deck-card" onClick={() => handleQuitarCarta(index)}>
+        <img src={carta.image.secure_url} alt={carta.nombre} />
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
 
     <div className="extra-deck-section">
       <h2>Extra Deck</h2>
