@@ -6,8 +6,17 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setUpdatedCard((prevCard) => ({ ...prevCard, [name]: value }));
-  };
+    
+    if (name.includes('.')) { // Si el nombre incluye un punto, asume que es una propiedad anidada
+        const [parent, child] = name.split('.');
+        setUpdatedCard(prevCard => ({
+            ...prevCard, 
+            [parent]: { ...prevCard[parent], [child]: value }
+        }));
+    } else {
+        setUpdatedCard(prevCard => ({ ...prevCard, [name]: value }));
+    }
+};
 
   const handleSubmit = (event) => {
     event.preventDefault();

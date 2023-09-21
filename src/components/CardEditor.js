@@ -45,22 +45,28 @@ const CardEditor = () => {
   };
 
   const handleUpdateCard = (updatedCard) => {
-    const updateCard = async () => {
-      try {
-        await axios.put(`https://backend-dlp-neuronube.koyeb.app/cards/${updatedCard._id}`, updatedCard);
-        setCards((prevCards) =>
-          prevCards.map((card) =>
-            card._id === updatedCard._id ? updatedCard : card
-          )
-        );
-        setSelectedCard(null);
-      } catch (error) {
-        console.log('Error al actualizar la carta:', error);
-      }
-    };
+    
+  // Verifica la estructura del objeto updatedCard antes de enviar la solicitud
+  console.log('Updated Card:', updatedCard);
 
-    updateCard();
+  const updateCard = async () => {
+    try {
+      // Asegúrate de que el objeto updatedCard tiene la estructura correcta
+      await axios.put(`https://api.duellinks.pro/cards/${updatedCard._id}`, updatedCard);
+      setCards((prevCards) =>
+        prevCards.map((card) =>
+          card._id === updatedCard._id ? updatedCard : card
+        )
+      );
+      setSelectedCard(null);
+    } catch (error) {
+      console.error('Error al actualizar la carta:', error);
+    }
   };
+
+  updateCard();
+};
+
 
   const renderCards = () => {
     return cards.map((card) => (
