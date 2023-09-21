@@ -18,7 +18,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
     <div className="card-form">
       
       <form onSubmit={handleSubmit}>
-     {/*   <div>
+    <div>
           <label>Imagen:</label>
           <input
             type="text"
@@ -26,7 +26,7 @@ const CardForm = ({ card, onSubmit, onCancel }) => {
             value={updatedCard.image.secure_url}
             onChange={handleChange}
           />
-        </div> */}
+        </div> 
         <div>
           <label>Nombre Español:</label>
 

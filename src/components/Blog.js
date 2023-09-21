@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import "./Blog.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // importa los estilos
+
 
 function Blog() {
   const [formData, setFormData] = useState({
@@ -15,6 +18,13 @@ function Blog() {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleEditorChange = (value) => {
+    setFormData({
+      ...formData,
+      cuerpo_blog: value,
     });
   };
 
@@ -47,9 +57,9 @@ function Blog() {
           <input className="form-control" type="text" name="titulo" value={formData.titulo} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <label>Cuerpo del blog:</label>
-          <textarea className="form-control" name="cuerpo_blog" value={formData.cuerpo_blog} onChange={handleChange} />
-        </div>
+        <label>Cuerpo del blog:</label>
+        <ReactQuill value={formData.cuerpo_blog} onChange={handleEditorChange} />
+      </div>
         <div className="form-group">
           <label>Fecha:</label>
           <input className="form-control" type="date" name="fecha" value={formData.fecha} onChange={handleChange} />
