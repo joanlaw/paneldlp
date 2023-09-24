@@ -362,6 +362,8 @@ const [totalEstimatedCost, setTotalEstimatedCost] = useState(0);  // Nuevo estad
   <option value="Torneo LHC #4">Torneo LHC #4</option>
   <option value="Torneo LHC #5">Torneo LHC #5</option>
   <option value="Rogue Pro #3">Rogue Pro #3</option>
+  <option value="Rogue Pro #4">Rogue Pro #4</option>
+  <option value="Rogue Pro #5">Rogue Pro #5</option>
   <option value="ND Max">ND Max</option>
   <option value="Ensalada">Ensalada</option>
 
