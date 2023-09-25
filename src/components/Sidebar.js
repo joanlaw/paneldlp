@@ -61,6 +61,12 @@ const Sidebar = () => {
         </Link>
       </Menu.Item>
 
+      <Menu.Item key="/rush" className="sidebar-menu-item">
+        <Link to="/rush" className="sidebar-menu-link">
+          Rush
+        </Link>
+      </Menu.Item>
+
       <Menu.Item key="/" className="sidebar-link">
         <Link to="/" className="sidebar-link">
           <button className="sidebar-btn">

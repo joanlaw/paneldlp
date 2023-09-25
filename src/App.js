@@ -22,6 +22,7 @@ import Login from './components/Login';
 import WithAuth from './components/WithAuth';
 import Arquetipos from './components/Arquetipos'
 import LeagueForm from './components/LeagueForm';
+import RushEditor from './components/RushEditor';
 
 // Inicializa Firebase
 initializeApp(firebaseConfig);
@@ -56,6 +57,7 @@ function App() {
               <Route path="/crear-entrada" element={<WithAuth component={Blog} />} />
               <Route path="/crear-arquetipo" element={<WithAuth component={Arquetipos} />} />
               <Route path="/crear-liga" element={<WithAuth component={LeagueForm} />} />
+              <Route path="/rush" element={<WithAuth component={RushEditor} />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
