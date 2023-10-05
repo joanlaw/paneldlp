@@ -364,6 +364,12 @@ const [totalEstimatedCost, setTotalEstimatedCost] = useState(0);  // Nuevo estad
   <option value="Rogue Pro #3">Rogue Pro #3</option>
   <option value="Rogue Pro #4">Rogue Pro #4</option>
   <option value="Rogue Pro #5">Rogue Pro #5</option>
+  <option value="Rogue Pro #6">Rogue Pro #6</option>
+  <option value="Rogue Pro #7">Rogue Pro #7</option>
+  <option value="Meta Pro #1">Meta Pro #1</option>
+  <option value="Meta Pro #2">Meta Pro #2</option>
+  <option value="Meta Pro #3">Meta Pro #3</option>
+  <option value="Meta Pro #4">Meta Pro #4</option>
   <option value="ND Max">ND Max</option>
   <option value="Ensalada">Ensalada</option>
 

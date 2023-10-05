@@ -1,38 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Upload, Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 const RushForm = ({ visible, onCancel, rushId, onUpdate }) => {
-  const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (visible) {
-      // Llenar el formulario con los datos actuales del rush si es necesario
-      form.resetFields();
-      if (rushId) {
-        // Obtener los datos del rush actual
-        axios.get(`https://api.duellinks.pro/rushes/${rushId}`)
-          .then((response) => {
-            const rushData = response.data;
-            form.setFieldsValue({
-              name: rushData.name.en,
-              requirement: rushData.requirement.en,
-              effect: rushData.effect.en,
-            });
-          })
-          .catch((error) => {
-            console.error('Error fetching rush data:', error);
-          });
-      }
-    }
-  }, [visible, rushId, form]);
 
   const handleUpdate = async () => {
     try {
-      const formData = form.getFieldsValue();
       setLoading(true);
-      await axios.put(`https://api.duellinks.pro/rushes/${rushId}`, formData);
+      const formData = new FormData();
+
+      if (fileList.length > 0) {
+        formData.append('image', fileList[0].originFileObj);
+      }
+
+      // Imprimir el FormData antes de enviarlo
+      console.log('FormData antes de enviarlo:');
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
+
+      await axios.put(`https://api.duellinks.pro/rushes/${rushId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
       onUpdate();
     } catch (error) {
       console.error('Error updating rush:', error);
@@ -40,6 +35,11 @@ const RushForm = ({ visible, onCancel, rushId, onUpdate }) => {
       setLoading(false);
       onCancel();
     }
+  };
+
+  const onFileChange = ({ fileList }) => {
+    console.log('Lista de archivos después del cambio:', fileList);
+    setFileList(fileList);
   };
 
   return (
@@ -61,17 +61,14 @@ const RushForm = ({ visible, onCancel, rushId, onUpdate }) => {
         </Button>,
       ]}
     >
-      <Form form={form} layout="vertical">
-        <Form.Item name="name" label="Name">
-          <Input />
-        </Form.Item>
-        <Form.Item name="requirement" label="Requirement">
-          <Input />
-        </Form.Item>
-        <Form.Item name="effect" label="Effect">
-          <Input.TextArea rows={4} />
-        </Form.Item>
-      </Form>
+      <Upload
+        beforeUpload={() => false} // Return false to not upload automatically
+        listType="picture"
+        fileList={fileList}
+        onChange={onFileChange}
+      >
+        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      </Upload>
     </Modal>
   );
 };
